@@ -1,0 +1,793 @@
+{
+  "Uuid": "e2d4c23e-610a-4c08-8c02-9ad14039a848",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Create Sprinkler Heads From CAD2",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "a5aca596e86845d289571391d3257280",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "456daf1b370d4ad4a60075e346200599",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\ikassab\\Documents\\CAD Sprinkler Head.dwg",
+      "InputValue": ".\\CAD Sprinkler Head.dwg"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "36593fbe-4737-4c56-8556-6289637f96b2",
+      "FunctionType": "Graph",
+      "Id": "4631a1dfd0c34e4586b3364a88efebad",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5a7dec459f914d9198fb1d787ae92f9e",
+          "Name": "document",
+          "Description": "Autodesk.Revit.DB.Document\nOptional input\n\nvar[]..[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c5d115d8d8b9417daf015ba25c6ffe41",
+          "Name": "Filepaths",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dd7cd8a61ef549e5bae86f2ba87e9f66",
+          "Name": "views",
+          "Description": "As many Views as FilePaths\n\nvar[]..[]\nDefault value : Revit.Application.Document.Current.ActiveView",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "30fed672ffda4383b3a84baa420f9879",
+          "Name": "CustomScale",
+          "Description": "Warning : If this is defined, it takes preference over units\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d1a9e263c864466d826b32cfefc1b507",
+          "Name": "Colormode",
+          "Description": "var[]..[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b56efe7f6abc4ed09ce2965ae9dbab32",
+          "Name": "Placement",
+          "Description": "var[]..[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1ab861ecd8fe46e5bcbb985ff0d8f1b2",
+          "Name": "unit",
+          "Description": "var[]..[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b6d02be5215431599f7a778dd45f010",
+          "Name": "AllView",
+          "Description": "DWG visible in all views ?\nOption not available in 3D views\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6d41ed9a4f3a4ac08307d1336e63865d",
+          "Name": "DrawLayer",
+          "Description": "Draw layer : Foreground (0) or Background (1)\n\nint\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c525c33951ec41828c58e36bd31c6aee",
+          "Name": "Views",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "42e5908d96b842189420d45969a9a405",
+          "Name": "Name",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b34f2a1945ba47fba82cd9df296f2599",
+          "Name": "CADLinkType",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e528caf8eb2d4e0ebd4f942be5e737a1",
+          "Name": "ImportInstance",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Import DWGs in views with options.\r\nUse with the Enumerate DWG import options node.\r\nBased on an archilab's script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3e9dad16b414422a9ff4665e8f3d968f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f767dac9ad114d4f89a560e8ce633919",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f9ea6792b9094de18d45b40d706fc982",
+          "Name": "geometry[]",
+          "Description": "List of geometry from the element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "Returns all geometry associated with an element. Ignores transforms when used with linked elements.\n\nElement.Geometry ( ): var[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c7c54d64a32a4642b14c7e960de856e5",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "eae09e68d5da4c7084d34763fd5e58f8",
+          "Name": "closedCurve",
+          "Description": "Closed curve used as surface boundary\n\nCurve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bfa15637d0014aa0bb0cb2bc3c426ef4",
+          "Name": "Surface",
+          "Description": "Surface created by patch",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.ByPatch@Autodesk.DesignScript.Geometry.Curve",
+      "Replication": "Auto",
+      "Description": "Create a Surface by filling in the interior of a closed boundary defined by input Curves.\n\nSurface.ByPatch (closedCurve: Curve): Surface"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e6da1d5e6f4a47d08ee51d11f8dc42b4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c691355852a94bb18494c3f7c0c13512",
+          "Name": "surface",
+          "Description": "Autodesk.DesignScript.Geometry.Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "93489eee43b94a1abf7b64287695395a",
+          "Name": "thickness",
+          "Description": "Amount to thicken\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6190beb7ab9848d4abf88bb5c78842dc",
+          "Name": "Solid",
+          "Description": "Thickened surface as solid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.Thicken@double",
+      "Replication": "Auto",
+      "Description": "Thicken Surface into a Solid, extruding in the direction of Surface normals on both sides of the Surface.\n\nSurface.Thicken (thickness: double = 1): Solid"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b772cba3c49241ce9918c0eda43915ba",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a746ecec394f41a2ac0d0cb7e49ad062",
+          "Name": "solidGeometry",
+          "Description": "Solid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6ab8eb05eec84282befcd3b6ec6ee930",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ac651992df5d4f3199d89e2bddb62306",
+          "Name": "category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f344b61b4265420db73662e349c3e361",
+          "Name": "templatePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f6aad9adc7764491a4ecb04678d8b751",
+          "Name": "material",
+          "Description": "Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9dbcc16cf53d4b5bb6e4565ac037d95c",
+          "Name": "subcategory",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ed968fb0920f41148dba32eb8412041e",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Rhythm.Revit.Elements.FamilyInstances.ByGeometry@Autodesk.DesignScript.Geometry.Solid,string,Revit.Elements.Category,string,Revit.Elements.Material,string",
+      "Replication": "Auto",
+      "Description": "Create a familyInstance from Dynamo solid geometry. This node was made possible thanks to spring nodes (originally) https://github.com/dimven/SpringNodes/blob/master/py/FamilyInstance.ByGeometry.py\n\nFamilyInstances.ByGeometry (solidGeometry: Solid, name: string, category: Category, templatePath: string, material: Material, subcategory: string = \"\"): Element"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 271,
+      "SelectedString": "OST_GenericModel",
+      "Id": "8c42078163bd48dea13dca83714e43bd",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "229c05b98387470eaa3bdb8990e4840c",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "585ac34711234c618db5fffe979183d2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7db33cd8525a45f4b6fc76ff6855f8b0",
+          "Name": "name",
+          "Description": "The name of the material\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4507772d378d416f830ac6dce70e018b",
+          "Name": "Material",
+          "Description": "Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Material.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a material from the current document by the name\n\nMaterial.ByName (name: string): Material"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "b8bce4c29bc147899c3dbe7e79735ba0",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "315ede3a1d004b56be7c419cb74d0342",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "\"Sprinkler Head\";"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "b146b8128c8f4fd282a841355165ab30",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "80e54bb1b5b541d68bc46922bd07568b",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "0.001;"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "43484a82b5844bf5bf3cd64a10c9d220",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7425953e22064171bee0d0fbcc8067f4",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\ProgramData\\Autodesk\\RVT 2025\\Family Templates\\English-Imperial\\Generic Model.rft",
+      "InputValue": "..\\..\\..\\ProgramData\\Autodesk\\RVT 2025\\Family Templates\\English-Imperial\\Generic Model.rft"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "745f935537b144459d05b0f6bfa3983d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "8c26638b5a6141b4b1e0d18cfcaede19",
+          "Name": "solids",
+          "Description": "A collection of solids\n\nSolid[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c769d7467adb472ba2f7f23cf3cb6be5",
+          "Name": "Solid",
+          "Description": "Solid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Solid.ByUnion@Autodesk.DesignScript.Geometry.Solid[]",
+      "Replication": "Auto",
+      "Description": "Union a collection of solids into one solid\n\nSolid.ByUnion (solids: Solid[]): Solid"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "c55057fc04894e5eb8bf166017b7ad43",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "80c45a00fbab4553adabf94d139beec3",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "\"Default\";"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "456daf1b370d4ad4a60075e346200599",
+      "End": "c5d115d8d8b9417daf015ba25c6ffe41",
+      "Id": "1cc9f8dff8864189b9ffcf2a52fbe4ce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e528caf8eb2d4e0ebd4f942be5e737a1",
+      "End": "f767dac9ad114d4f89a560e8ce633919",
+      "Id": "cea23ea034304334b6738887c41e00f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f9ea6792b9094de18d45b40d706fc982",
+      "End": "eae09e68d5da4c7084d34763fd5e58f8",
+      "Id": "c16208b62f6b4fa289b137af19b897ba",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bfa15637d0014aa0bb0cb2bc3c426ef4",
+      "End": "c691355852a94bb18494c3f7c0c13512",
+      "Id": "5ed7d931c3184876a6b4f14a95c9e95f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6190beb7ab9848d4abf88bb5c78842dc",
+      "End": "8c26638b5a6141b4b1e0d18cfcaede19",
+      "Id": "eeb769377dc845c3b309909d85428a45",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "229c05b98387470eaa3bdb8990e4840c",
+      "End": "ac651992df5d4f3199d89e2bddb62306",
+      "Id": "eebaaf5dc08244c9a4c7251d40f974ab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4507772d378d416f830ac6dce70e018b",
+      "End": "f6aad9adc7764491a4ecb04678d8b751",
+      "Id": "f33245c69a1f4499b868b50cc06ed58b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "315ede3a1d004b56be7c419cb74d0342",
+      "End": "6ab8eb05eec84282befcd3b6ec6ee930",
+      "Id": "c58ed33fe4ea49988b944ae7132a3a8c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "80e54bb1b5b541d68bc46922bd07568b",
+      "End": "93489eee43b94a1abf7b64287695395a",
+      "Id": "269474731f6642ac9d92764870569703",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7425953e22064171bee0d0fbcc8067f4",
+      "End": "f344b61b4265420db73662e349c3e361",
+      "Id": "26c32d7d89bb4e7086ca6809f6917928",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c769d7467adb472ba2f7f23cf3cb6be5",
+      "End": "a746ecec394f41a2ac0d0cb7e49ad062",
+      "Id": "8d81ddbf43a046d79aae1676ac03d89b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "80c45a00fbab4553adabf94d139beec3",
+      "End": "7db33cd8525a45f4b6fc76ff6855f8b0",
+      "Id": "10c2797c67d449c18cf671350ecc51e3",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [
+    "36593fbe-4737-4c56-8556-6289637f96b2"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Genius Loci",
+      "Version": "2024.5.29",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "4631a1dfd0c34e4586b3364a88efebad"
+      ]
+    },
+    {
+      "Name": "Rhythm",
+      "Version": "2024.10.1",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "b772cba3c49241ce9918c0eda43915ba"
+      ]
+    },
+    {
+      "Name": "CAD Sprinkler Head.dwg",
+      "ReferenceType": "External",
+      "Nodes": [
+        "a5aca596e86845d289571391d3257280"
+      ]
+    },
+    {
+      "Name": "Generic Model.rft",
+      "ReferenceType": "External",
+      "Nodes": [
+        "43484a82b5844bf5bf3cd64a10c9d220"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a5aca596e86845d289571391d3257280",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1435.44743244268,
+        "Y": 1263.1141617868539
+      },
+      {
+        "Id": "4631a1dfd0c34e4586b3364a88efebad",
+        "Name": "Import DWG",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1714.7936722957863,
+        "Y": 1233.2817963902373
+      },
+      {
+        "Id": "3e9dad16b414422a9ff4665e8f3d968f",
+        "Name": "Element.Geometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2188.9192378061202,
+        "Y": 1339.8252308404956
+      },
+      {
+        "Id": "c7c54d64a32a4642b14c7e960de856e5",
+        "Name": "Surface.ByPatch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2626.104796531907,
+        "Y": 1403.8209437167727
+      },
+      {
+        "Id": "e6da1d5e6f4a47d08ee51d11f8dc42b4",
+        "Name": "Surface.Thicken",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2973.2523108212945,
+        "Y": 1500.549265249986
+      },
+      {
+        "Id": "b772cba3c49241ce9918c0eda43915ba",
+        "Name": "ʳʰʸᵗʰᵐ|FamilyInstances.ByGeometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3529.799045264773,
+        "Y": 1699.0036671843125
+      },
+      {
+        "Id": "8c42078163bd48dea13dca83714e43bd",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3128.0681917200804,
+        "Y": 1864.2145631945823
+      },
+      {
+        "Id": "585ac34711234c618db5fffe979183d2",
+        "Name": "Material.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3143.0018393308633,
+        "Y": 2159.9802221381274
+      },
+      {
+        "Id": "b8bce4c29bc147899c3dbe7e79735ba0",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3144.234889293021,
+        "Y": 1727.670853611846
+      },
+      {
+        "Id": "b146b8128c8f4fd282a841355165ab30",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2712.261311816791,
+        "Y": 1536.4797093441123
+      },
+      {
+        "Id": "43484a82b5844bf5bf3cd64a10c9d220",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2885.198627590671,
+        "Y": 1989.8225355469626
+      },
+      {
+        "Id": "745f935537b144459d05b0f6bfa3983d",
+        "Name": "Solid.ByUnion",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3259.7622540111897,
+        "Y": 1520.8220382715506
+      },
+      {
+        "Id": "c55057fc04894e5eb8bf166017b7ad43",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2931.0445197411914,
+        "Y": 2161.701439946911
+      }
+    ],
+    "Annotations": [],
+    "X": -810.0973486559741,
+    "Y": -627.7592446373283,
+    "Zoom": 0.6271179659073188
+  }
+}
